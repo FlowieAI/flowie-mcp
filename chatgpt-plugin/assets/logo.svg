@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="7" fill="#222878"/>
+  <!-- F glyph from the Flowie wordmark. Path bounds: x 0–111.1, y 14.335–145.935 (portrait 111.1×131.6) -->
+  <!-- At "meet" scale: height wins → 20px tall, width = 20 × (111.1/131.6) ≈ 16.9px -->
+  <!-- Centred in 32px: left margin ≈ (32−16.9)/2 = 7.6 → x=7, right margin = 8.1 -->
+  <svg x="7" y="6" width="18" height="20" viewBox="0 14.335 111.1 131.6" preserveAspectRatio="xMidYMid meet">
+    <path d="M89.7 40.335C78.9 40.335 69.5667 38.535 61.7 34.935L55.3 67.335H93.9C93.9 74.4016 92.1 80.2016 88.5 84.735C85.0333 89.135 80.1 91.335 73.7 91.335C66.7667 91.335 60.1 90.0683 53.7 87.535C52.3667 87.0017 51.6333 86.6683 51.5 86.535L40 145.935H0L21.9 14.335H111.1C111.1 22.4683 109.167 28.8683 105.3 33.535C101.567 38.0683 96.3667 40.335 89.7 40.335Z" fill="#FFFFFF"/>
+  </svg>
+</svg>

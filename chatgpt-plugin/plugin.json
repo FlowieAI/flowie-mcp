@@ -1,0 +1,110 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "flowie",
+  "version": "1.0.1",
+  "description": "Create customer invoices from ChatGPT and send them through Sovos e-invoicing, plus AI order-to-cash and procure-to-pay.",
+  "author": {
+    "name": "Flowie SAS",
+    "url": "https://get-flowie.com"
+  },
+  "homepage": "https://get-flowie.com",
+  "repository": "https://github.com/FlowieAI/flowie-mcp",
+  "keywords": [
+    "e-invoicing",
+    "invoicing",
+    "order-to-cash",
+    "procure-to-pay",
+    "accounts payable",
+    "accounts receivable",
+    "Peppol",
+    "Sovos",
+    "SRM"
+  ],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "interface": {
+        "displayName": "Flowie",
+        "shortDescription": "Invoicing and procure-to-pay",
+        "longDescription": "Work in Flowie from ChatGPT. Flowie is an order-to-cash and procure-to-pay platform: it creates customer invoices and credit notes and, for companies set up for e-invoicing, sends them through Sovos in the format each country requires (Sovos covers 150 countries). It also receives supplier invoices and runs purchase requests, approvals, purchase orders, invoice matching, payments, budgets and supplier relationships.\n\nChatGPT works in Flowie as you, with your own permissions, in the companies you belong to. Examples:\n- \"Invoice Acme for 12 hours of consulting at 150 euros\": creates the invoice with amounts and tax computed, after you confirm it.\n- \"Which customer invoices are overdue?\": lists unpaid invoices past their due date.\n- \"What is waiting for my approval?\": lists supplier invoices, requests and orders to approve; ChatGPT approves or refuses only when you ask.\n- \"Who are our suppliers?\": lists your supplier relationships and contacts.\n\nSign in with your Flowie login (SSO and Google included). A Flowie account is required.",
+        "developerName": "Flowie SAS",
+        "category": "Productivity",
+        "capabilities": [
+          "Create customer invoices and credit notes; send them through Sovos where e-invoicing is set up",
+          "Follow invoices to payment: overdue invoices, payment status, delivery and lifecycle history",
+          "Approve or refuse supplier invoices, purchase requests and purchase orders",
+          "Create purchase requests and purchase orders, and match invoices to orders",
+          "Manage suppliers and customers: partnerships, contacts, onboarding forms, IBAN checks",
+          "Read budgets, tasks, documents and spend analytics"
+        ],
+        "websiteURL": "https://get-flowie.com",
+        "supportURL": "https://get-flowie.com/contact",
+        "privacyPolicyURL": "https://get-flowie.com/legal/privacy",
+        "termsOfServiceURL": "https://get-flowie.com/legal/terms",
+        "defaultPrompt": [
+          "Invoice Acme for 12 hours of consulting at 150 euros",
+          "Which customer invoices are overdue?",
+          "What is waiting for my approval in Flowie?"
+        ],
+        "brandColor": "#222878",
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/logo.svg"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Lists the companies the signed-in user belongs to, so the user can pick one.",
+              "prompt": "Which companies can I work in on Flowie?",
+              "tools_triggered": "list_my_organizations",
+              "expected_behavior": "Returns the user's Flowie organizations with their names and ids. For the reviewer test account this includes the test company."
+            },
+            {
+              "description": "Creates a customer invoice with every amount and tax computed.",
+              "prompt": "In Flowie, create an invoice to Acme for 12 hours of consulting at 150 euros with 20% VAT.",
+              "tools_triggered": "list_my_organizations, search_organizations, create_transaction_document",
+              "expected_behavior": "After confirming the customer and lines with the user, creates an invoice of 1,800.00 EUR net, 360.00 EUR VAT, 2,160.00 EUR total, and returns its id and number."
+            },
+            {
+              "description": "Finds overdue customer invoices.",
+              "prompt": "Which of my customer invoices in Flowie are overdue?",
+              "tools_triggered": "search_transaction_documents",
+              "expected_behavior": "Lists the customer invoices whose due date has passed and that are not paid, with number, customer, amount and due date, or says there are none."
+            },
+            {
+              "description": "Lists what is waiting for the user's approval.",
+              "prompt": "What is waiting for my approval in Flowie?",
+              "tools_triggered": "list_objects_pending_approval",
+              "expected_behavior": "Lists the invoices, purchase requests or orders waiting for the user's approval, or says nothing is waiting. It does not approve anything without the user's explicit request."
+            },
+            {
+              "description": "Lists the company's suppliers.",
+              "prompt": "Who are our suppliers in Flowie?",
+              "tools_triggered": "list_partnerships",
+              "expected_behavior": "Lists the organization's supplier partnerships with their names."
+            }
+          ],
+          "negative": [
+            {
+              "description": "A general accounting question with no request to act in Flowie should be answered without calling Flowie tools.",
+              "prompt": "What is the difference between an invoice and a credit note?"
+            },
+            {
+              "description": "An unrelated request should not trigger Flowie.",
+              "prompt": "What will the weather be in Paris tomorrow?"
+            },
+            {
+              "description": "Writing a reminder email without asking to look anything up in Flowie should not call Flowie tools.",
+              "prompt": "Write a polite payment reminder email I can send to a customer."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments inside ChatGPT. It creates and sends business invoices in the user's own Flowie account."
+      },
+      "publication": {
+        "release_notes": "First release: create invoices and follow them to payment, approvals, purchase requests and orders, suppliers."
+      }
+    }
+  }
+}
