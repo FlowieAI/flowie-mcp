@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.get-flowie/exchange",
+  "description": "One API to send and receive compliant e-invoices in 150 countries via Sovos, from any ERP.",
+  "title": "Flowie Exchange: send e-invoices in 150 countries",
+  "version": "1.4.0",
+  "websiteUrl": "https://docs.get-flowie.com/mcp.md",
+  "icons": [
+    {
+      "src": "https://get-flowie.com/icon.svg",
+      "mimeType": "image/svg+xml"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://back.p2p-flowie.com/exchange/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/FlowieAI/flowie-mcp",
+    "source": "github",
+    "subfolder": "exchange"
+  }
+}

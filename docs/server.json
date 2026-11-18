@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.get-flowie/docs",
+  "description": "Search and read the Flowie Exchange API docs and OpenAPI contract. No sign-in needed.",
+  "title": "Flowie Developer Docs",
+  "version": "1.1.0",
+  "websiteUrl": "https://docs.get-flowie.com/developers/",
+  "icons": [
+    {
+      "src": "https://get-flowie.com/icon.svg",
+      "mimeType": "image/svg+xml"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://docs.get-flowie.com/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/FlowieAI/flowie-mcp",
+    "source": "github",
+    "subfolder": "docs"
+  }
+}

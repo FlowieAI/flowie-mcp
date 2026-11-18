@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.get-flowie/website",
+  "description": "Ask about Flowie: invoicing in 150 countries via Sovos, order-to-cash, procure-to-pay, SRM.",
+  "title": "Flowie",
+  "version": "1.4.0",
+  "websiteUrl": "https://get-flowie.com/developers",
+  "icons": [
+    {
+      "src": "https://get-flowie.com/icon.svg",
+      "mimeType": "image/svg+xml"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://get-flowie.com/mcp"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/FlowieAI/flowie-mcp",
+    "source": "github",
+    "subfolder": "website"
+  }
+}
