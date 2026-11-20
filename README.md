@@ -37,6 +37,10 @@ claude mcp add --transport http flowie-api https://back.p2p-flowie.com/exchange/
 
 Full, copy-ready configuration for every client: <https://docs.get-flowie.com/mcp.md>
 
+## Microsoft 365 Copilot
+
+The Microsoft 365 app package for MCP server certification (Copilot Studio, Microsoft Foundry, Microsoft 365 Copilot) is in [m365-copilot/](m365-copilot/).
+
 ## Environments
 
 | | Production | Staging / sandbox |

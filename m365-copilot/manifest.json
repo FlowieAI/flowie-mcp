@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.30/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.30",
+  "version": "1.0.0",
+  "id": "58bcd6ab-598a-4764-9bcf-beebac1f101d",
+  "developer": {
+    "name": "Flowie SAS",
+    "websiteUrl": "https://get-flowie.com",
+    "privacyUrl": "https://get-flowie.com/legal/privacy",
+    "termsOfUseUrl": "https://get-flowie.com/legal/terms"
+  },
+  "name": {
+    "short": "Flowie",
+    "full": "Flowie - invoicing and procure-to-pay"
+  },
+  "description": {
+    "short": "Send compliant invoices in 150 countries, plus order-to-cash and procure-to-pay.",
+    "full": "Work in Flowie from Microsoft Copilot. Flowie is an order-to-cash and procure-to-pay platform: it creates customer invoices and credit notes and, for companies set up for e-invoicing, sends them through Sovos in the format each country requires (Sovos covers 150 countries, Peppol, clearance and real-time reporting regimes included). It also receives supplier invoices and runs purchase requests, approvals, purchase orders, invoice matching, payments, budgets and supplier relationships.\n\nCopilot works in Flowie as you, with your own Flowie permissions, in the companies you belong to. Examples:\n- \"Invoice Acme for 12 hours of consulting at 150 euros\": creates the invoice with amounts and tax computed, after you confirm it.\n- \"Which customer invoices are overdue?\": lists unpaid invoices past their due date.\n- \"What is waiting for my approval?\": lists supplier invoices, requests and orders to approve; Copilot approves or refuses only when you ask.\n- \"Who are our suppliers?\": lists your supplier relationships and contacts.\n\nSign in with your Flowie login (SSO and Google included). A Flowie account is required."
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "accentColor": "#222878",
+  "agentConnectors": [
+    {
+      "id": "flowie-app",
+      "displayName": "Flowie",
+      "description": "Flowie order-to-cash and procure-to-pay: create and send compliant customer invoices, follow them to payment, approve supplier invoices, purchase requests and orders, manage suppliers, budgets and spend. Acts as the signed-in Flowie user.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://back.p2p-flowie.com/agent-hub/mcp",
+          "mcpToolDescription": {
+            "file": "mcptools.json"
+          },
+          "authorization": {
+            "type": "AzureKeyVault",
+            "referenceId": "https://flowie-mcp-kv.vault.azure.net/"
+          }
+        }
+      }
+    }
+  ]
+}
