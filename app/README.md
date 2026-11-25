@@ -27,6 +27,19 @@ VS Code `.vscode/mcp.json`:
 
 Claude.ai / Claude Desktop: Settings → Connectors → Add custom connector → paste the URL → Connect.
 
+## Code Mode: two tools instead of the whole app
+
+The server lists every tool of the Flowie app. Add `?codemode=search_and_execute` to the URL and it lists two tools instead (about 600 tokens of definitions):
+
+```bash
+claude mcp add --transport http flowie-app "https://back.p2p-flowie.com/agent-hub/mcp?codemode=search_and_execute"
+```
+
+- `search_tools` finds the tools for a task, by words or exact names, and returns their full definitions.
+- `execute` runs a plan of up to 10 steps and 25 calls; a step can reuse an earlier result (`"$steps.<id>.<path>"`) or run once per element of a list (`for_each` with `"$item"`). Only the steps named in `return` come back in full.
+
+Every step runs as a direct call would, as you, with the same checks and the same rate limit. `execute` is marked as a write, so a client that asks before writes asks once per plan. ChatGPT always gets the full list. Details: <https://docs.get-flowie.com/build-with-ai/#code-mode>
+
 ## Sign-in
 
 OAuth only (no API key). The client discovers everything from the `401` challenge: RFC 9728 protected-resource metadata, RFC 8414 authorization-server metadata, RFC 7591 dynamic client registration, authorization code + PKCE S256. You sign in with your normal Flowie login (SSO and Google work). Access tokens last 24 hours and are refreshed automatically.
