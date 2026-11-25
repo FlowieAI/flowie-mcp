@@ -27,18 +27,19 @@ VS Code `.vscode/mcp.json`:
 
 Claude.ai / Claude Desktop: Settings → Connectors → Add custom connector → paste the URL → Connect.
 
-## Code Mode: two tools instead of the whole app
+## Code Mode: three tools instead of the whole app
 
-The server lists every tool of the Flowie app. Add `?codemode=search_and_execute` to the URL and it lists two tools instead (about 600 tokens of definitions):
+The server lists every tool of the Flowie app. Add `?codemode=search_and_execute` to the URL and it lists three tools instead (about 800 tokens of definitions):
 
 ```bash
 claude mcp add --transport http flowie-app "https://back.p2p-flowie.com/agent-hub/mcp?codemode=search_and_execute"
 ```
 
-- `search_tools` finds the tools for a task, by words or exact names, and returns their full definitions.
-- `execute` runs a plan of up to 10 steps and 25 calls; a step can reuse an earlier result (`"$steps.<id>.<path>"`) or run once per element of a list (`for_each` with `"$item"`). Only the steps named in `return` come back in full.
+- `search_tools` finds the tools for a task, by words or exact names, and returns their full definitions, each marked read-only or not.
+- `execute` runs a plan of tools that **read**: up to 10 steps and 25 calls; a step can reuse an earlier result (`"$steps.<id>.<path>"`) or run once per element of a list (`for_each` with `"$item"`). Only the steps named in `return` come back in full.
+- `execute_write` runs **one** tool that changes data. Writes are never part of a plan, so a client that always allows `execute` still asks before each write.
 
-Every step runs as a direct call would, as you, with the same checks and the same rate limit. `execute` is marked as a write, so a client that asks before writes asks once per plan. ChatGPT always gets the full list. Details: <https://docs.get-flowie.com/build-with-ai/#code-mode>
+Every step runs as a direct call would, as you, with the same checks and the same rate limit. ChatGPT always gets the full list. Details: <https://docs.get-flowie.com/build-with-ai/#code-mode>
 
 ## Sign-in
 
