@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "flowie",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create customer invoices from ChatGPT and send them through Sovos e-invoicing, plus AI order-to-cash and procure-to-pay.",
   "author": {
     "name": "Flowie SAS",
@@ -103,7 +103,7 @@
         "commerce_description": "This plugin does not sell products or process payments inside ChatGPT. It creates and sends business invoices in the user's own Flowie account."
       },
       "publication": {
-        "release_notes": "First release: create invoices and follow them to payment, approvals, purchase requests and orders, suppliers."
+        "release_notes": "First release: create invoices and follow them to payment, approvals, purchase requests and orders, suppliers. The privacy policy and terms are now hosted on get-flowie.com."
       }
     }
   }
